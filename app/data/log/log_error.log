@@ -1,0 +1,362 @@
+25-03-17.21:09:04.216 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+25-03-17.21:09:06.224 [main            ] WARN  OllamaApi              - [404] Not Found - {"error":"model \"nomic-embed-text\" not found, try pulling it first"}
+25-03-17.21:09:06.225 [main            ] WARN  PgVectorStore          - Failed to obtain the embedding dimensions from the embedding client and fall backs to default:1536
+java.lang.RuntimeException: [404] Not Found - {"error":"model \"nomic-embed-text\" not found, try pulling it first"}
+	at org.springframework.ai.ollama.api.OllamaApi$OllamaResponseErrorHandler.handleError(OllamaApi.java:78)
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63)
+	at org.springframework.web.client.StatusHandler.lambda$fromErrorHandler$1(StatusHandler.java:71)
+	at org.springframework.web.client.StatusHandler.handle(StatusHandler.java:146)
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.applyStatusHandlers(DefaultRestClient.java:680)
+	at org.springframework.web.client.DefaultRestClient.readWithMessageConverters(DefaultRestClient.java:200)
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.readBody(DefaultRestClient.java:667)
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.body(DefaultRestClient.java:613)
+	at org.springframework.ai.ollama.api.OllamaApi.embeddings(OllamaApi.java:595)
+	at org.springframework.ai.ollama.OllamaEmbeddingClient.call(OllamaEmbeddingClient.java:101)
+	at org.springframework.ai.embedding.EmbeddingClient.embed(EmbeddingClient.java:56)
+	at org.springframework.ai.embedding.EmbeddingClient.embed(EmbeddingClient.java:39)
+	at org.springframework.ai.embedding.AbstractEmbeddingClient.dimensions(AbstractEmbeddingClient.java:56)
+	at org.springframework.ai.embedding.AbstractEmbeddingClient.dimensions(AbstractEmbeddingClient.java:78)
+	at org.springframework.ai.vectorstore.PgVectorStore.embeddingDimensions(PgVectorStore.java:367)
+	at org.springframework.ai.vectorstore.PgVectorStore.afterPropertiesSet(PgVectorStore.java:351)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
+25-03-17.21:09:09.114 [main            ] WARN  OllamaApi              - [404] Not Found - {"error":"model \"nomic-embed-text\" not found, try pulling it first"}
+25-03-17.21:09:21.148 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+25-03-17.21:09:23.056 [main            ] WARN  OllamaApi              - [404] Not Found - {"error":"model \"nomic-embed-text\" not found, try pulling it first"}
+25-03-17.21:09:23.056 [main            ] WARN  PgVectorStore          - Failed to obtain the embedding dimensions from the embedding client and fall backs to default:1536
+java.lang.RuntimeException: [404] Not Found - {"error":"model \"nomic-embed-text\" not found, try pulling it first"}
+	at org.springframework.ai.ollama.api.OllamaApi$OllamaResponseErrorHandler.handleError(OllamaApi.java:78)
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63)
+	at org.springframework.web.client.StatusHandler.lambda$fromErrorHandler$1(StatusHandler.java:71)
+	at org.springframework.web.client.StatusHandler.handle(StatusHandler.java:146)
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.applyStatusHandlers(DefaultRestClient.java:680)
+	at org.springframework.web.client.DefaultRestClient.readWithMessageConverters(DefaultRestClient.java:200)
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.readBody(DefaultRestClient.java:667)
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.body(DefaultRestClient.java:613)
+	at org.springframework.ai.ollama.api.OllamaApi.embeddings(OllamaApi.java:595)
+	at org.springframework.ai.ollama.OllamaEmbeddingClient.call(OllamaEmbeddingClient.java:101)
+	at org.springframework.ai.embedding.EmbeddingClient.embed(EmbeddingClient.java:56)
+	at org.springframework.ai.embedding.EmbeddingClient.embed(EmbeddingClient.java:39)
+	at org.springframework.ai.embedding.AbstractEmbeddingClient.dimensions(AbstractEmbeddingClient.java:56)
+	at org.springframework.ai.embedding.AbstractEmbeddingClient.dimensions(AbstractEmbeddingClient.java:78)
+	at org.springframework.ai.vectorstore.PgVectorStore.embeddingDimensions(PgVectorStore.java:367)
+	at org.springframework.ai.vectorstore.PgVectorStore.afterPropertiesSet(PgVectorStore.java:351)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
+25-03-17.21:09:25.771 [main            ] WARN  OllamaApi              - [404] Not Found - {"error":"model \"nomic-embed-text\" not found, try pulling it first"}
+25-03-17.21:09:41.460 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+25-03-17.21:09:43.440 [main            ] WARN  OllamaApi              - [404] Not Found - {"error":"model \"nomic-embed-text\" not found, try pulling it first"}
+25-03-17.21:09:43.440 [main            ] WARN  PgVectorStore          - Failed to obtain the embedding dimensions from the embedding client and fall backs to default:1536
+java.lang.RuntimeException: [404] Not Found - {"error":"model \"nomic-embed-text\" not found, try pulling it first"}
+	at org.springframework.ai.ollama.api.OllamaApi$OllamaResponseErrorHandler.handleError(OllamaApi.java:78)
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63)
+	at org.springframework.web.client.StatusHandler.lambda$fromErrorHandler$1(StatusHandler.java:71)
+	at org.springframework.web.client.StatusHandler.handle(StatusHandler.java:146)
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.applyStatusHandlers(DefaultRestClient.java:680)
+	at org.springframework.web.client.DefaultRestClient.readWithMessageConverters(DefaultRestClient.java:200)
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.readBody(DefaultRestClient.java:667)
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.body(DefaultRestClient.java:613)
+	at org.springframework.ai.ollama.api.OllamaApi.embeddings(OllamaApi.java:595)
+	at org.springframework.ai.ollama.OllamaEmbeddingClient.call(OllamaEmbeddingClient.java:101)
+	at org.springframework.ai.embedding.EmbeddingClient.embed(EmbeddingClient.java:56)
+	at org.springframework.ai.embedding.EmbeddingClient.embed(EmbeddingClient.java:39)
+	at org.springframework.ai.embedding.AbstractEmbeddingClient.dimensions(AbstractEmbeddingClient.java:56)
+	at org.springframework.ai.embedding.AbstractEmbeddingClient.dimensions(AbstractEmbeddingClient.java:78)
+	at org.springframework.ai.vectorstore.PgVectorStore.embeddingDimensions(PgVectorStore.java:367)
+	at org.springframework.ai.vectorstore.PgVectorStore.afterPropertiesSet(PgVectorStore.java:351)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:228)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:289)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:291)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:247)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
+25-03-17.21:10:12.059 [main            ] WARN  OllamaApi              - [404] Not Found - {"error":"model \"nomic-embed-text\" not found, try pulling it first"}
+25-03-17.21:10:30.858 [HikariCP housekeeper] WARN  HikariPool             - HikariCP - Thread starvation or clock leap detected (housekeeper delta=47s528ms505µs500ns).
+25-03-17.21:14:33.377 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+25-03-17.21:20:10.276 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+25-03-17.21:20:15.611 [main            ] ERROR RAGTest                - 上传过程中出现错误: 
+org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO vector_store (id, content, metadata, embedding) VALUES (?, ?, ?::jsonb, ?) ON CONFLICT (id) DO UPDATE SET content = ? , metadata = ?::jsonb , embedding = ? ]; Batch entry 0 INSERT INTO vector_store (id, content, metadata, embedding) VALUES (('4464a2aa-beb6-4849-98e1-cb66360b6598'::uuid), ('往事苏打 出生于2008年'), ('{"source":"file.text","knowledge":"知识库名称"}')::jsonb, ('[0.20867231,0.3705554,-3.0857077,-0.25490263,-0.6310914,0.47881103,0.20436169,-0.480868,0.9666676,-0.18653391,-0.6465,0.55237436,-0.556216,0.82093513,0.5014469,-0.13000277,-0.448215,-1.0882301,-1.064156,1.1864287,-0.44982758,1.0144029,-0.8583668,-0.87403774,2.2134914,0.47748223,0.2213466,0.16170965,0.07497744,-0.3484632,0.34981906,-0.98205435,-0.49657932,-0.5928408,-0.52666885,-0.12588286,0.2867673,1.1877818,-0.12503344,-0.07903517,0.93667334,0.01329058,0.6053523,-0.45731744,1.5527964,-0.25292823,0.23494378,0.50796044,1.4334338,-0.83083725,-0.39640123,0.43823192,-0.014946435,-0.070145726,1.1919863,1.5346551,0.04683678,0.042896487,-0.26442522,-1.4951075,0.8859699,0.9406464,0.073084086,0.9142653,1.0009434,-0.4814092,0.23467788,0.17571747,0.46235618,-0.42335296,0.83916867,0.6018315,0.76846004,0.7351733,-0.075186945,-0.30603877,-0.6713718,-0.5531838,-1.1045074,0.58701384,0.9981308,0.20640397,0.6357959,0.44798052,1.1570272,-0.8289417,-0.416323,-0.078470275,-0.6049727,0.69750166,0.38040188,-0.38310444,1.3010321,0.7375381,-1.2810538,-0.7518935,-0.12660386,0.7838708,-0.17018604,0.62454206,-1.465502,-1.10711,0.27979815,0.6310942,1.0207121,0.15733206,-0.43798587,0.35848773,-0.8342057,0.09150629,-0.009017289,2.0632238,-0.8538201,-1.2455826,2.032525,-0.94300973,0.6889836,-0.54834944,0.23386896,0.87496734,-1.3259004,-0.88886845,-0.77234644,0.6579463,0.8374326,0.20368385,-0.13673498,0.39613116,-0.8941125,-1.4085575,0.06188359,-0.877601,0.25976917,0.35346934,0.82606727,-0.584517,-0.61914563,-0.8476764,0.15047112,1.0077394,0.61907667,0.81300396,-0.54518056,-1.4641286,-0.2764138,-0.62798095,0.9129454,0.0027111769,-0.41695082,-0.10587479,0.10691434,0.49778563,0.12951235,0.7994882,0.21923234,-0.3149394,0.076418,-0.16219807,1.6192749,0.34422895,0.46402243,1.0209571,-1.3024892,0.28958592,-0.27287745,-1.2219236,-0.5859801,0.4042446,0.75568587,0.30000284,-1.099744,0.11464947,0.4199268,0.016449362,-0.12452363,0.07043713,0.23709868,-1.0301337,-0.6423848,-0.22792014,-0.47778693,-2.1170049,1.7082478,0.27596164,0.92455864,-1.0084697,0.20411387,0.16689746,-0.68755925,-0.47001103,-1.2271677,-0.315281,-0.57763493,0.525749,-1.035123,-1.4821308,0.504004,0.48405656,0.0033816993,-0.7121015,-0.73590875,0.37852734,-0.19218606,-1.0698065,-0.19101083,1.6523378,-0.5772208,0.05461113,-0.60813326,0.47784433,0.9602062,0.059754208,-1.4172049,-0.49935105,0.15901086,-0.12596448,0.31602404,-0.6254489,-0.51684284,0.119512916,0.65564734,-0.57634234,0.013528356,-0.6578796,1.3553482,-0.006401092,-0.9615643,-0.18075493,-0.83051395,-0.15788172,-0.8350316,-1.1232426,0.01892975,0.34700197,-0.6632504,2.216838,-0.016061358,1.0310912,0.6867885,0.5532491,-0.18561271,-0.57549936,-0.75598395,-0.08790286,-0.4713276,0.19689402,0.14034809,-0.021198273,-0.00792785,1.0094619,0.46157485,0.13139746,1.1786143,1.796623,1.2192552,-1.4004474,-0.09815978,-0.9018681,0.14133358,-1.2615678,-0.0689127,-0.5508233,1.4483831,-0.42728066,0.5933281,-0.021092884,-0.4184229,-0.33850756,0.83971405,-0.082659654,1.0579202,1.3000653,-0.48814768,0.60617983,-0.48652288,-0.5883255,-0.5682291,-0.26911247,-0.7604653,-0.39899775,-0.098302454,-0.8261484,-0.31495082,-0.17686325,0.34391457,1.1320221,0.37785614,-0.26488873,-0.124494605,0.4071095,0.2113371,-0.9081198,-0.115856804,1.8163192,-0.5119908,0.9598522,0.34479237,-0.70693195,0.083592124,-0.27591828,1.5342897,-0.8753678,0.068211205,-0.49292004,0.40018556,-1.0835199,1.4498895,-0.23814577,1.8213677,-1.25921,-1.3178344,0.6764666,-0.7207229,1.2021384,-1.5671102,0.8697356,0.784291,-0.15854731,0.78918755,0.035781182,1.187955,-0.7160238,0.7654612,-0.17062794,0.8542471,1.1816492,-0.8469973,0.79255724,1.214635,-0.2374709,0.048878897,0.3752454,0.70376647,-0.65726346,0.21992241,0.75156707,0.14832911,-0.87114954,-1.1780118,1.8644313,0.9125689,-0.037646584,0.89865243,-0.052739635,0.3465234,0.8134804,-1.0309298,0.032681897,1.3500098,0.34150633,0.5538738,0.7595593,-0.28479844,-0.67475545,0.9830934,-0.622141,-0.0630928,0.80884886,0.9871047,-0.24034561,1.2833413,-0.17688803,-0.26839647,0.2809561,-0.603531,0.91159993,1.1194856,0.12695,0.93133324,0.19485945,-1.263272,-1.0152068,-0.6258208,-0.388441,-0.2793302,-0.031327337,-0.66635895,-0.3757849,-0.5861913,0.26153362,0.44614494,-0.41740432,0.2759369,0.96552694,1.0367578,-0.24082665,1.3852285,0.9407495,-0.6961737,1.0109586,-0.34257638,-0.9135118,-0.45883706,-0.14504388,1.1264757,-0.81855536,0.43401524,0.64713776,1.3293812,0.2118824,-1.8885849,-1.4432712,-0.14142823,-0.2691235,-0.72277313,1.634305,-0.68361735,-1.6504062,1.8097149,0.3799859,0.31452572,0.7172195,-1.0896192,0.3822003,-0.009256462,1.0861585,0.89928794,-0.922029,-0.28294834,0.75314254,1.5369449,0.4679765,-0.78051317,0.09830934,0.0065670013,2.3992739,-0.084555455,0.94281566,1.3205991,-0.8541166,0.1897608,0.894678,-0.3970101,-0.9085377,0.33816898,-0.2650103,1.2865232,0.44651237,-0.023921892,1.2833697,0.24775845,-0.5730056,-1.108851,-1.1374428,0.49999836,0.57766014,1.4063251,-1.6040912,0.8098158,1.5447353,0.26384115,0.14908387,0.14978442,1.0482913,2.4881573,-0.6608739,0.12959798,0.65842205,-1.5855303,0.17974748,0.49566454,1.0609252,-1.3835343,0.051432494,-0.46654972,-0.5054484,-0.057442147,0.0018673316,0.37193343,0.27880183,-0.58563006,-0.19527443,0.94021326,-0.6462765,-0.69864786,-0.51846045,-1.6053133,-1.2695297,0.5273155,1.0353415,1.6851649,0.27991688,0.3163711,-1.3399186,-0.18975173,-0.7173524,0.43678918,0.19552806,0.46118012,-0.2772941,0.29609275,0.53748626,-0.14780924,0.8004508,0.27806583,-0.86650646,-0.6708894,0.34346426,0.9675132,0.023997022,-0.19829783,-1.3287162,-0.72464216,0.22031327,1.2573185,-0.19673869,-0.2254802,-1.1065745,-0.21921082,0.74771005,-0.3655623,-0.4576368,0.38909006,-0.05135341,-0.3937326,-0.90710956,0.77739173,0.087827206,-0.739322,0.11076909,0.0019270554,-1.692219,0.16859746,0.010250136,-0.14647768,-0.8355138,1.3156966,-1.0574288,0.59365255,-0.1305698,0.20405048,0.3600983,0.0904333,-1.3832641,0.07342203,0.0149027705,-0.45896608,0.45431745,0.4816412,0.17531694,0.06487155,0.021402463,0.14156647,-0.07069878,-1.0203829,-0.17150746,-1.381047,-0.3260922,-0.59610677,-0.3223541,0.93256336,0.33959556,0.9737258,0.07169393,0.5563536,-0.94385284,0.5155316,-0.9002389,0.17701177,-0.40132585,0.6830908,-0.4486758,0.5451923,0.55620277,0.39793134,-0.15504497,1.4197652,-0.14009576,-0.05684367,0.6103684,-0.62431836,-0.29649815,0.5836719,-1.2521499,-0.43276358,-0.30836532,1.1338003,-0.19025037,-1.6656151,0.23324046,0.048672605,-1.6591656,-0.48363867,2.18649,-0.36803734,0.23197097,-1.0921102,-1.0042057,1.0080668,-1.6808447,0.4009474,0.329615,-8.7057985E-4,0.42324042,-0.54925406,-0.5253801,-0.30507195,-1.7685612,-0.44582546,-1.230395,0.27854642,-0.0686882,0.57701844,-0.84042317,-0.8572006,-0.21744286,-0.269808,0.7909165,-0.15352069,-0.35247916,0.19068,1.0166843,-0.5352292,-0.8488108,0.24783663,0.34912688,0.79078746,-0.5611043,-1.1796281,-0.5173013,-0.3133224,-0.0074357167,0.4385588,-0.41675723,-0.18516557,0.036957107,-1.6373179,-1.1884229,-0.56600565,0.22797847,-0.106825136,0.709651,-1.6186829,0.12909414,-0.64366955,0.83284926,0.548693,1.003717,0.24958526,-0.2924295,0.8417896,-0.70829844,0.5546346,1.7021577,2.0876584,-0.8821945,-0.9775263,0.97983086,0.9777739,-1.680171,0.8639652,-0.1082739,0.19177791,-0.24097914,0.82791394,-0.641672,0.34886894,-2.2165236,-1.3203782,-1.1998574,0.2735715,-0.22205596,0.9080539,-0.05050385,-0.21234742,-1.0180774,0.62604445,-0.2984851,-1.4163407,-0.54627436,0.78338885,0.57976425,-0.5127152,-1.0517728,-0.320395,0.14258051,0.16668367,1.0250278,-0.40900475,0.3500223,0.99173373,0.50015473,-0.0676537,-0.39811668,-0.29712212,-0.27300322,1.209057,-0.18429625,0.016425796,-0.65079594,-0.8771759,-0.22954437,-0.6742156,-0.95547724,0.050243463,0.53536016,0.55213445,0.08149713,-0.46845677,0.74037653,-0.06892677,-0.06332914,-0.31434727,0.5012708,-1.1592361,-0.737605,-0.94195443,-0.94681805,-0.04257107,-0.4356069,-0.00400763,0.9342926,-0.6085551,1.4694679,0.8870526,0.7035612,-1.0701923,-0.31094623,0.4505363,0.9507083,-1.2797108,-0.079249606,-1.077555,-1.0015309,-0.053038612,-0.46691823,-0.1634763,-0.744061,-0.06712276,-0.23070851,-0.2830233,-0.13171308,-0.38740745,1.0671968,0.03689176,0.019370325,-1.2711349,-0.07801034,-0.71759695,-1.608251,-0.66459167,1.1771812,1.0425608,1.051906,0.32696962,-0.34443665,-0.9956496,0.38957056,-0.26961583,0.3811623,0.3567503,-0.10397604,-0.43124354,0.43427464,-0.17960447,0.12408918,0.47403798,1.4061741,0.6193274,-0.10485597,-0.008534677,0.17378987,1.4930804,-0.18255419,-0.2564261,-0.73102236,-0.30453193,-0.78749824]')) ON CONFLICT (id) DO UPDATE SET content = ('往事苏打 出生于2008年') , metadata = ('{"source":"file.text","knowledge":"知识库名称"}')::jsonb , embedding = ('[0.20867231,0.3705554,-3.0857077,-0.25490263,-0.6310914,0.47881103,0.20436169,-0.480868,0.9666676,-0.18653391,-0.6465,0.55237436,-0.556216,0.82093513,0.5014469,-0.13000277,-0.448215,-1.0882301,-1.064156,1.1864287,-0.44982758,1.0144029,-0.8583668,-0.87403774,2.2134914,0.47748223,0.2213466,0.16170965,0.07497744,-0.3484632,0.34981906,-0.98205435,-0.49657932,-0.5928408,-0.52666885,-0.12588286,0.2867673,1.1877818,-0.12503344,-0.07903517,0.93667334,0.01329058,0.6053523,-0.45731744,1.5527964,-0.25292823,0.23494378,0.50796044,1.4334338,-0.83083725,-0.39640123,0.43823192,-0.014946435,-0.070145726,1.1919863,1.5346551,0.04683678,0.042896487,-0.26442522,-1.4951075,0.8859699,0.9406464,0.073084086,0.9142653,1.0009434,-0.4814092,0.23467788,0.17571747,0.46235618,-0.42335296,0.83916867,0.6018315,0.76846004,0.7351733,-0.075186945,-0.30603877,-0.6713718,-0.5531838,-1.1045074,0.58701384,0.9981308,0.20640397,0.6357959,0.44798052,1.1570272,-0.8289417,-0.416323,-0.078470275,-0.6049727,0.69750166,0.38040188,-0.38310444,1.3010321,0.7375381,-1.2810538,-0.7518935,-0.12660386,0.7838708,-0.17018604,0.62454206,-1.465502,-1.10711,0.27979815,0.6310942,1.0207121,0.15733206,-0.43798587,0.35848773,-0.8342057,0.09150629,-0.009017289,2.0632238,-0.8538201,-1.2455826,2.032525,-0.94300973,0.6889836,-0.54834944,0.23386896,0.87496734,-1.3259004,-0.88886845,-0.77234644,0.6579463,0.8374326,0.20368385,-0.13673498,0.39613116,-0.8941125,-1.4085575,0.06188359,-0.877601,0.25976917,0.35346934,0.82606727,-0.584517,-0.61914563,-0.8476764,0.15047112,1.0077394,0.61907667,0.81300396,-0.54518056,-1.4641286,-0.2764138,-0.62798095,0.9129454,0.0027111769,-0.41695082,-0.10587479,0.10691434,0.49778563,0.12951235,0.7994882,0.21923234,-0.3149394,0.076418,-0.16219807,1.6192749,0.34422895,0.46402243,1.0209571,-1.3024892,0.28958592,-0.27287745,-1.2219236,-0.5859801,0.4042446,0.75568587,0.30000284,-1.099744,0.11464947,0.4199268,0.016449362,-0.12452363,0.07043713,0.23709868,-1.0301337,-0.6423848,-0.22792014,-0.47778693,-2.1170049,1.7082478,0.27596164,0.92455864,-1.0084697,0.20411387,0.16689746,-0.68755925,-0.47001103,-1.2271677,-0.315281,-0.57763493,0.525749,-1.035123,-1.4821308,0.504004,0.48405656,0.0033816993,-0.7121015,-0.73590875,0.37852734,-0.19218606,-1.0698065,-0.19101083,1.6523378,-0.5772208,0.05461113,-0.60813326,0.47784433,0.9602062,0.059754208,-1.4172049,-0.49935105,0.15901086,-0.12596448,0.31602404,-0.6254489,-0.51684284,0.119512916,0.65564734,-0.57634234,0.013528356,-0.6578796,1.3553482,-0.006401092,-0.9615643,-0.18075493,-0.83051395,-0.15788172,-0.8350316,-1.1232426,0.01892975,0.34700197,-0.6632504,2.216838,-0.016061358,1.0310912,0.6867885,0.5532491,-0.18561271,-0.57549936,-0.75598395,-0.08790286,-0.4713276,0.19689402,0.14034809,-0.021198273,-0.00792785,1.0094619,0.46157485,0.13139746,1.1786143,1.796623,1.2192552,-1.4004474,-0.09815978,-0.9018681,0.14133358,-1.2615678,-0.0689127,-0.5508233,1.4483831,-0.42728066,0.5933281,-0.021092884,-0.4184229,-0.33850756,0.83971405,-0.082659654,1.0579202,1.3000653,-0.48814768,0.60617983,-0.48652288,-0.5883255,-0.5682291,-0.26911247,-0.7604653,-0.39899775,-0.098302454,-0.8261484,-0.31495082,-0.17686325,0.34391457,1.1320221,0.37785614,-0.26488873,-0.124494605,0.4071095,0.2113371,-0.9081198,-0.115856804,1.8163192,-0.5119908,0.9598522,0.34479237,-0.70693195,0.083592124,-0.27591828,1.5342897,-0.8753678,0.068211205,-0.49292004,0.40018556,-1.0835199,1.4498895,-0.23814577,1.8213677,-1.25921,-1.3178344,0.6764666,-0.7207229,1.2021384,-1.5671102,0.8697356,0.784291,-0.15854731,0.78918755,0.035781182,1.187955,-0.7160238,0.7654612,-0.17062794,0.8542471,1.1816492,-0.8469973,0.79255724,1.214635,-0.2374709,0.048878897,0.3752454,0.70376647,-0.65726346,0.21992241,0.75156707,0.14832911,-0.87114954,-1.1780118,1.8644313,0.9125689,-0.037646584,0.89865243,-0.052739635,0.3465234,0.8134804,-1.0309298,0.032681897,1.3500098,0.34150633,0.5538738,0.7595593,-0.28479844,-0.67475545,0.9830934,-0.622141,-0.0630928,0.80884886,0.9871047,-0.24034561,1.2833413,-0.17688803,-0.26839647,0.2809561,-0.603531,0.91159993,1.1194856,0.12695,0.93133324,0.19485945,-1.263272,-1.0152068,-0.6258208,-0.388441,-0.2793302,-0.031327337,-0.66635895,-0.3757849,-0.5861913,0.26153362,0.44614494,-0.41740432,0.2759369,0.96552694,1.0367578,-0.24082665,1.3852285,0.9407495,-0.6961737,1.0109586,-0.34257638,-0.9135118,-0.45883706,-0.14504388,1.1264757,-0.81855536,0.43401524,0.64713776,1.3293812,0.2118824,-1.8885849,-1.4432712,-0.14142823,-0.2691235,-0.72277313,1.634305,-0.68361735,-1.6504062,1.8097149,0.3799859,0.31452572,0.7172195,-1.0896192,0.3822003,-0.009256462,1.0861585,0.89928794,-0.922029,-0.28294834,0.75314254,1.5369449,0.4679765,-0.78051317,0.09830934,0.0065670013,2.3992739,-0.084555455,0.94281566,1.3205991,-0.8541166,0.1897608,0.894678,-0.3970101,-0.9085377,0.33816898,-0.2650103,1.2865232,0.44651237,-0.023921892,1.2833697,0.24775845,-0.5730056,-1.108851,-1.1374428,0.49999836,0.57766014,1.4063251,-1.6040912,0.8098158,1.5447353,0.26384115,0.14908387,0.14978442,1.0482913,2.4881573,-0.6608739,0.12959798,0.65842205,-1.5855303,0.17974748,0.49566454,1.0609252,-1.3835343,0.051432494,-0.46654972,-0.5054484,-0.057442147,0.0018673316,0.37193343,0.27880183,-0.58563006,-0.19527443,0.94021326,-0.6462765,-0.69864786,-0.51846045,-1.6053133,-1.2695297,0.5273155,1.0353415,1.6851649,0.27991688,0.3163711,-1.3399186,-0.18975173,-0.7173524,0.43678918,0.19552806,0.46118012,-0.2772941,0.29609275,0.53748626,-0.14780924,0.8004508,0.27806583,-0.86650646,-0.6708894,0.34346426,0.9675132,0.023997022,-0.19829783,-1.3287162,-0.72464216,0.22031327,1.2573185,-0.19673869,-0.2254802,-1.1065745,-0.21921082,0.74771005,-0.3655623,-0.4576368,0.38909006,-0.05135341,-0.3937326,-0.90710956,0.77739173,0.087827206,-0.739322,0.11076909,0.0019270554,-1.692219,0.16859746,0.010250136,-0.14647768,-0.8355138,1.3156966,-1.0574288,0.59365255,-0.1305698,0.20405048,0.3600983,0.0904333,-1.3832641,0.07342203,0.0149027705,-0.45896608,0.45431745,0.4816412,0.17531694,0.06487155,0.021402463,0.14156647,-0.07069878,-1.0203829,-0.17150746,-1.381047,-0.3260922,-0.59610677,-0.3223541,0.93256336,0.33959556,0.9737258,0.07169393,0.5563536,-0.94385284,0.5155316,-0.9002389,0.17701177,-0.40132585,0.6830908,-0.4486758,0.5451923,0.55620277,0.39793134,-0.15504497,1.4197652,-0.14009576,-0.05684367,0.6103684,-0.62431836,-0.29649815,0.5836719,-1.2521499,-0.43276358,-0.30836532,1.1338003,-0.19025037,-1.6656151,0.23324046,0.048672605,-1.6591656,-0.48363867,2.18649,-0.36803734,0.23197097,-1.0921102,-1.0042057,1.0080668,-1.6808447,0.4009474,0.329615,-8.7057985E-4,0.42324042,-0.54925406,-0.5253801,-0.30507195,-1.7685612,-0.44582546,-1.230395,0.27854642,-0.0686882,0.57701844,-0.84042317,-0.8572006,-0.21744286,-0.269808,0.7909165,-0.15352069,-0.35247916,0.19068,1.0166843,-0.5352292,-0.8488108,0.24783663,0.34912688,0.79078746,-0.5611043,-1.1796281,-0.5173013,-0.3133224,-0.0074357167,0.4385588,-0.41675723,-0.18516557,0.036957107,-1.6373179,-1.1884229,-0.56600565,0.22797847,-0.106825136,0.709651,-1.6186829,0.12909414,-0.64366955,0.83284926,0.548693,1.003717,0.24958526,-0.2924295,0.8417896,-0.70829844,0.5546346,1.7021577,2.0876584,-0.8821945,-0.9775263,0.97983086,0.9777739,-1.680171,0.8639652,-0.1082739,0.19177791,-0.24097914,0.82791394,-0.641672,0.34886894,-2.2165236,-1.3203782,-1.1998574,0.2735715,-0.22205596,0.9080539,-0.05050385,-0.21234742,-1.0180774,0.62604445,-0.2984851,-1.4163407,-0.54627436,0.78338885,0.57976425,-0.5127152,-1.0517728,-0.320395,0.14258051,0.16668367,1.0250278,-0.40900475,0.3500223,0.99173373,0.50015473,-0.0676537,-0.39811668,-0.29712212,-0.27300322,1.209057,-0.18429625,0.016425796,-0.65079594,-0.8771759,-0.22954437,-0.6742156,-0.95547724,0.050243463,0.53536016,0.55213445,0.08149713,-0.46845677,0.74037653,-0.06892677,-0.06332914,-0.31434727,0.5012708,-1.1592361,-0.737605,-0.94195443,-0.94681805,-0.04257107,-0.4356069,-0.00400763,0.9342926,-0.6085551,1.4694679,0.8870526,0.7035612,-1.0701923,-0.31094623,0.4505363,0.9507083,-1.2797108,-0.079249606,-1.077555,-1.0015309,-0.053038612,-0.46691823,-0.1634763,-0.744061,-0.06712276,-0.23070851,-0.2830233,-0.13171308,-0.38740745,1.0671968,0.03689176,0.019370325,-1.2711349,-0.07801034,-0.71759695,-1.608251,-0.66459167,1.1771812,1.0425608,1.051906,0.32696962,-0.34443665,-0.9956496,0.38957056,-0.26961583,0.3811623,0.3567503,-0.10397604,-0.43124354,0.43427464,-0.17960447,0.12408918,0.47403798,1.4061741,0.6193274,-0.10485597,-0.008534677,0.17378987,1.4930804,-0.18255419,-0.2564261,-0.73102236,-0.30453193,-0.78749824]')  was aborted: ERROR: expected 1536 dimensions, not 768  Call getNextException to see other errors in the batch.
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:118)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1548)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:701)
+	at org.springframework.jdbc.core.JdbcTemplate.batchUpdate(JdbcTemplate.java:1047)
+	at org.springframework.ai.vectorstore.PgVectorStore.add(PgVectorStore.java:228)
+	at org.springframework.ai.vectorstore.VectorStore.accept(VectorStore.java:43)
+	at cn.quantumforge.test.RAGTest.upload(RAGTest.java:61)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:76)
+	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:84)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:252)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:191)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:232)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:55)
+Caused by: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO vector_store (id, content, metadata, embedding) VALUES (('4464a2aa-beb6-4849-98e1-cb66360b6598'::uuid), ('往事苏打 出生于2008年'), ('{"source":"file.text","knowledge":"知识库名称"}')::jsonb, ('[0.20867231,0.3705554,-3.0857077,-0.25490263,-0.6310914,0.47881103,0.20436169,-0.480868,0.9666676,-0.18653391,-0.6465,0.55237436,-0.556216,0.82093513,0.5014469,-0.13000277,-0.448215,-1.0882301,-1.064156,1.1864287,-0.44982758,1.0144029,-0.8583668,-0.87403774,2.2134914,0.47748223,0.2213466,0.16170965,0.07497744,-0.3484632,0.34981906,-0.98205435,-0.49657932,-0.5928408,-0.52666885,-0.12588286,0.2867673,1.1877818,-0.12503344,-0.07903517,0.93667334,0.01329058,0.6053523,-0.45731744,1.5527964,-0.25292823,0.23494378,0.50796044,1.4334338,-0.83083725,-0.39640123,0.43823192,-0.014946435,-0.070145726,1.1919863,1.5346551,0.04683678,0.042896487,-0.26442522,-1.4951075,0.8859699,0.9406464,0.073084086,0.9142653,1.0009434,-0.4814092,0.23467788,0.17571747,0.46235618,-0.42335296,0.83916867,0.6018315,0.76846004,0.7351733,-0.075186945,-0.30603877,-0.6713718,-0.5531838,-1.1045074,0.58701384,0.9981308,0.20640397,0.6357959,0.44798052,1.1570272,-0.8289417,-0.416323,-0.078470275,-0.6049727,0.69750166,0.38040188,-0.38310444,1.3010321,0.7375381,-1.2810538,-0.7518935,-0.12660386,0.7838708,-0.17018604,0.62454206,-1.465502,-1.10711,0.27979815,0.6310942,1.0207121,0.15733206,-0.43798587,0.35848773,-0.8342057,0.09150629,-0.009017289,2.0632238,-0.8538201,-1.2455826,2.032525,-0.94300973,0.6889836,-0.54834944,0.23386896,0.87496734,-1.3259004,-0.88886845,-0.77234644,0.6579463,0.8374326,0.20368385,-0.13673498,0.39613116,-0.8941125,-1.4085575,0.06188359,-0.877601,0.25976917,0.35346934,0.82606727,-0.584517,-0.61914563,-0.8476764,0.15047112,1.0077394,0.61907667,0.81300396,-0.54518056,-1.4641286,-0.2764138,-0.62798095,0.9129454,0.0027111769,-0.41695082,-0.10587479,0.10691434,0.49778563,0.12951235,0.7994882,0.21923234,-0.3149394,0.076418,-0.16219807,1.6192749,0.34422895,0.46402243,1.0209571,-1.3024892,0.28958592,-0.27287745,-1.2219236,-0.5859801,0.4042446,0.75568587,0.30000284,-1.099744,0.11464947,0.4199268,0.016449362,-0.12452363,0.07043713,0.23709868,-1.0301337,-0.6423848,-0.22792014,-0.47778693,-2.1170049,1.7082478,0.27596164,0.92455864,-1.0084697,0.20411387,0.16689746,-0.68755925,-0.47001103,-1.2271677,-0.315281,-0.57763493,0.525749,-1.035123,-1.4821308,0.504004,0.48405656,0.0033816993,-0.7121015,-0.73590875,0.37852734,-0.19218606,-1.0698065,-0.19101083,1.6523378,-0.5772208,0.05461113,-0.60813326,0.47784433,0.9602062,0.059754208,-1.4172049,-0.49935105,0.15901086,-0.12596448,0.31602404,-0.6254489,-0.51684284,0.119512916,0.65564734,-0.57634234,0.013528356,-0.6578796,1.3553482,-0.006401092,-0.9615643,-0.18075493,-0.83051395,-0.15788172,-0.8350316,-1.1232426,0.01892975,0.34700197,-0.6632504,2.216838,-0.016061358,1.0310912,0.6867885,0.5532491,-0.18561271,-0.57549936,-0.75598395,-0.08790286,-0.4713276,0.19689402,0.14034809,-0.021198273,-0.00792785,1.0094619,0.46157485,0.13139746,1.1786143,1.796623,1.2192552,-1.4004474,-0.09815978,-0.9018681,0.14133358,-1.2615678,-0.0689127,-0.5508233,1.4483831,-0.42728066,0.5933281,-0.021092884,-0.4184229,-0.33850756,0.83971405,-0.082659654,1.0579202,1.3000653,-0.48814768,0.60617983,-0.48652288,-0.5883255,-0.5682291,-0.26911247,-0.7604653,-0.39899775,-0.098302454,-0.8261484,-0.31495082,-0.17686325,0.34391457,1.1320221,0.37785614,-0.26488873,-0.124494605,0.4071095,0.2113371,-0.9081198,-0.115856804,1.8163192,-0.5119908,0.9598522,0.34479237,-0.70693195,0.083592124,-0.27591828,1.5342897,-0.8753678,0.068211205,-0.49292004,0.40018556,-1.0835199,1.4498895,-0.23814577,1.8213677,-1.25921,-1.3178344,0.6764666,-0.7207229,1.2021384,-1.5671102,0.8697356,0.784291,-0.15854731,0.78918755,0.035781182,1.187955,-0.7160238,0.7654612,-0.17062794,0.8542471,1.1816492,-0.8469973,0.79255724,1.214635,-0.2374709,0.048878897,0.3752454,0.70376647,-0.65726346,0.21992241,0.75156707,0.14832911,-0.87114954,-1.1780118,1.8644313,0.9125689,-0.037646584,0.89865243,-0.052739635,0.3465234,0.8134804,-1.0309298,0.032681897,1.3500098,0.34150633,0.5538738,0.7595593,-0.28479844,-0.67475545,0.9830934,-0.622141,-0.0630928,0.80884886,0.9871047,-0.24034561,1.2833413,-0.17688803,-0.26839647,0.2809561,-0.603531,0.91159993,1.1194856,0.12695,0.93133324,0.19485945,-1.263272,-1.0152068,-0.6258208,-0.388441,-0.2793302,-0.031327337,-0.66635895,-0.3757849,-0.5861913,0.26153362,0.44614494,-0.41740432,0.2759369,0.96552694,1.0367578,-0.24082665,1.3852285,0.9407495,-0.6961737,1.0109586,-0.34257638,-0.9135118,-0.45883706,-0.14504388,1.1264757,-0.81855536,0.43401524,0.64713776,1.3293812,0.2118824,-1.8885849,-1.4432712,-0.14142823,-0.2691235,-0.72277313,1.634305,-0.68361735,-1.6504062,1.8097149,0.3799859,0.31452572,0.7172195,-1.0896192,0.3822003,-0.009256462,1.0861585,0.89928794,-0.922029,-0.28294834,0.75314254,1.5369449,0.4679765,-0.78051317,0.09830934,0.0065670013,2.3992739,-0.084555455,0.94281566,1.3205991,-0.8541166,0.1897608,0.894678,-0.3970101,-0.9085377,0.33816898,-0.2650103,1.2865232,0.44651237,-0.023921892,1.2833697,0.24775845,-0.5730056,-1.108851,-1.1374428,0.49999836,0.57766014,1.4063251,-1.6040912,0.8098158,1.5447353,0.26384115,0.14908387,0.14978442,1.0482913,2.4881573,-0.6608739,0.12959798,0.65842205,-1.5855303,0.17974748,0.49566454,1.0609252,-1.3835343,0.051432494,-0.46654972,-0.5054484,-0.057442147,0.0018673316,0.37193343,0.27880183,-0.58563006,-0.19527443,0.94021326,-0.6462765,-0.69864786,-0.51846045,-1.6053133,-1.2695297,0.5273155,1.0353415,1.6851649,0.27991688,0.3163711,-1.3399186,-0.18975173,-0.7173524,0.43678918,0.19552806,0.46118012,-0.2772941,0.29609275,0.53748626,-0.14780924,0.8004508,0.27806583,-0.86650646,-0.6708894,0.34346426,0.9675132,0.023997022,-0.19829783,-1.3287162,-0.72464216,0.22031327,1.2573185,-0.19673869,-0.2254802,-1.1065745,-0.21921082,0.74771005,-0.3655623,-0.4576368,0.38909006,-0.05135341,-0.3937326,-0.90710956,0.77739173,0.087827206,-0.739322,0.11076909,0.0019270554,-1.692219,0.16859746,0.010250136,-0.14647768,-0.8355138,1.3156966,-1.0574288,0.59365255,-0.1305698,0.20405048,0.3600983,0.0904333,-1.3832641,0.07342203,0.0149027705,-0.45896608,0.45431745,0.4816412,0.17531694,0.06487155,0.021402463,0.14156647,-0.07069878,-1.0203829,-0.17150746,-1.381047,-0.3260922,-0.59610677,-0.3223541,0.93256336,0.33959556,0.9737258,0.07169393,0.5563536,-0.94385284,0.5155316,-0.9002389,0.17701177,-0.40132585,0.6830908,-0.4486758,0.5451923,0.55620277,0.39793134,-0.15504497,1.4197652,-0.14009576,-0.05684367,0.6103684,-0.62431836,-0.29649815,0.5836719,-1.2521499,-0.43276358,-0.30836532,1.1338003,-0.19025037,-1.6656151,0.23324046,0.048672605,-1.6591656,-0.48363867,2.18649,-0.36803734,0.23197097,-1.0921102,-1.0042057,1.0080668,-1.6808447,0.4009474,0.329615,-8.7057985E-4,0.42324042,-0.54925406,-0.5253801,-0.30507195,-1.7685612,-0.44582546,-1.230395,0.27854642,-0.0686882,0.57701844,-0.84042317,-0.8572006,-0.21744286,-0.269808,0.7909165,-0.15352069,-0.35247916,0.19068,1.0166843,-0.5352292,-0.8488108,0.24783663,0.34912688,0.79078746,-0.5611043,-1.1796281,-0.5173013,-0.3133224,-0.0074357167,0.4385588,-0.41675723,-0.18516557,0.036957107,-1.6373179,-1.1884229,-0.56600565,0.22797847,-0.106825136,0.709651,-1.6186829,0.12909414,-0.64366955,0.83284926,0.548693,1.003717,0.24958526,-0.2924295,0.8417896,-0.70829844,0.5546346,1.7021577,2.0876584,-0.8821945,-0.9775263,0.97983086,0.9777739,-1.680171,0.8639652,-0.1082739,0.19177791,-0.24097914,0.82791394,-0.641672,0.34886894,-2.2165236,-1.3203782,-1.1998574,0.2735715,-0.22205596,0.9080539,-0.05050385,-0.21234742,-1.0180774,0.62604445,-0.2984851,-1.4163407,-0.54627436,0.78338885,0.57976425,-0.5127152,-1.0517728,-0.320395,0.14258051,0.16668367,1.0250278,-0.40900475,0.3500223,0.99173373,0.50015473,-0.0676537,-0.39811668,-0.29712212,-0.27300322,1.209057,-0.18429625,0.016425796,-0.65079594,-0.8771759,-0.22954437,-0.6742156,-0.95547724,0.050243463,0.53536016,0.55213445,0.08149713,-0.46845677,0.74037653,-0.06892677,-0.06332914,-0.31434727,0.5012708,-1.1592361,-0.737605,-0.94195443,-0.94681805,-0.04257107,-0.4356069,-0.00400763,0.9342926,-0.6085551,1.4694679,0.8870526,0.7035612,-1.0701923,-0.31094623,0.4505363,0.9507083,-1.2797108,-0.079249606,-1.077555,-1.0015309,-0.053038612,-0.46691823,-0.1634763,-0.744061,-0.06712276,-0.23070851,-0.2830233,-0.13171308,-0.38740745,1.0671968,0.03689176,0.019370325,-1.2711349,-0.07801034,-0.71759695,-1.608251,-0.66459167,1.1771812,1.0425608,1.051906,0.32696962,-0.34443665,-0.9956496,0.38957056,-0.26961583,0.3811623,0.3567503,-0.10397604,-0.43124354,0.43427464,-0.17960447,0.12408918,0.47403798,1.4061741,0.6193274,-0.10485597,-0.008534677,0.17378987,1.4930804,-0.18255419,-0.2564261,-0.73102236,-0.30453193,-0.78749824]')) ON CONFLICT (id) DO UPDATE SET content = ('往事苏打 出生于2008年') , metadata = ('{"source":"file.text","knowledge":"知识库名称"}')::jsonb , embedding = ('[0.20867231,0.3705554,-3.0857077,-0.25490263,-0.6310914,0.47881103,0.20436169,-0.480868,0.9666676,-0.18653391,-0.6465,0.55237436,-0.556216,0.82093513,0.5014469,-0.13000277,-0.448215,-1.0882301,-1.064156,1.1864287,-0.44982758,1.0144029,-0.8583668,-0.87403774,2.2134914,0.47748223,0.2213466,0.16170965,0.07497744,-0.3484632,0.34981906,-0.98205435,-0.49657932,-0.5928408,-0.52666885,-0.12588286,0.2867673,1.1877818,-0.12503344,-0.07903517,0.93667334,0.01329058,0.6053523,-0.45731744,1.5527964,-0.25292823,0.23494378,0.50796044,1.4334338,-0.83083725,-0.39640123,0.43823192,-0.014946435,-0.070145726,1.1919863,1.5346551,0.04683678,0.042896487,-0.26442522,-1.4951075,0.8859699,0.9406464,0.073084086,0.9142653,1.0009434,-0.4814092,0.23467788,0.17571747,0.46235618,-0.42335296,0.83916867,0.6018315,0.76846004,0.7351733,-0.075186945,-0.30603877,-0.6713718,-0.5531838,-1.1045074,0.58701384,0.9981308,0.20640397,0.6357959,0.44798052,1.1570272,-0.8289417,-0.416323,-0.078470275,-0.6049727,0.69750166,0.38040188,-0.38310444,1.3010321,0.7375381,-1.2810538,-0.7518935,-0.12660386,0.7838708,-0.17018604,0.62454206,-1.465502,-1.10711,0.27979815,0.6310942,1.0207121,0.15733206,-0.43798587,0.35848773,-0.8342057,0.09150629,-0.009017289,2.0632238,-0.8538201,-1.2455826,2.032525,-0.94300973,0.6889836,-0.54834944,0.23386896,0.87496734,-1.3259004,-0.88886845,-0.77234644,0.6579463,0.8374326,0.20368385,-0.13673498,0.39613116,-0.8941125,-1.4085575,0.06188359,-0.877601,0.25976917,0.35346934,0.82606727,-0.584517,-0.61914563,-0.8476764,0.15047112,1.0077394,0.61907667,0.81300396,-0.54518056,-1.4641286,-0.2764138,-0.62798095,0.9129454,0.0027111769,-0.41695082,-0.10587479,0.10691434,0.49778563,0.12951235,0.7994882,0.21923234,-0.3149394,0.076418,-0.16219807,1.6192749,0.34422895,0.46402243,1.0209571,-1.3024892,0.28958592,-0.27287745,-1.2219236,-0.5859801,0.4042446,0.75568587,0.30000284,-1.099744,0.11464947,0.4199268,0.016449362,-0.12452363,0.07043713,0.23709868,-1.0301337,-0.6423848,-0.22792014,-0.47778693,-2.1170049,1.7082478,0.27596164,0.92455864,-1.0084697,0.20411387,0.16689746,-0.68755925,-0.47001103,-1.2271677,-0.315281,-0.57763493,0.525749,-1.035123,-1.4821308,0.504004,0.48405656,0.0033816993,-0.7121015,-0.73590875,0.37852734,-0.19218606,-1.0698065,-0.19101083,1.6523378,-0.5772208,0.05461113,-0.60813326,0.47784433,0.9602062,0.059754208,-1.4172049,-0.49935105,0.15901086,-0.12596448,0.31602404,-0.6254489,-0.51684284,0.119512916,0.65564734,-0.57634234,0.013528356,-0.6578796,1.3553482,-0.006401092,-0.9615643,-0.18075493,-0.83051395,-0.15788172,-0.8350316,-1.1232426,0.01892975,0.34700197,-0.6632504,2.216838,-0.016061358,1.0310912,0.6867885,0.5532491,-0.18561271,-0.57549936,-0.75598395,-0.08790286,-0.4713276,0.19689402,0.14034809,-0.021198273,-0.00792785,1.0094619,0.46157485,0.13139746,1.1786143,1.796623,1.2192552,-1.4004474,-0.09815978,-0.9018681,0.14133358,-1.2615678,-0.0689127,-0.5508233,1.4483831,-0.42728066,0.5933281,-0.021092884,-0.4184229,-0.33850756,0.83971405,-0.082659654,1.0579202,1.3000653,-0.48814768,0.60617983,-0.48652288,-0.5883255,-0.5682291,-0.26911247,-0.7604653,-0.39899775,-0.098302454,-0.8261484,-0.31495082,-0.17686325,0.34391457,1.1320221,0.37785614,-0.26488873,-0.124494605,0.4071095,0.2113371,-0.9081198,-0.115856804,1.8163192,-0.5119908,0.9598522,0.34479237,-0.70693195,0.083592124,-0.27591828,1.5342897,-0.8753678,0.068211205,-0.49292004,0.40018556,-1.0835199,1.4498895,-0.23814577,1.8213677,-1.25921,-1.3178344,0.6764666,-0.7207229,1.2021384,-1.5671102,0.8697356,0.784291,-0.15854731,0.78918755,0.035781182,1.187955,-0.7160238,0.7654612,-0.17062794,0.8542471,1.1816492,-0.8469973,0.79255724,1.214635,-0.2374709,0.048878897,0.3752454,0.70376647,-0.65726346,0.21992241,0.75156707,0.14832911,-0.87114954,-1.1780118,1.8644313,0.9125689,-0.037646584,0.89865243,-0.052739635,0.3465234,0.8134804,-1.0309298,0.032681897,1.3500098,0.34150633,0.5538738,0.7595593,-0.28479844,-0.67475545,0.9830934,-0.622141,-0.0630928,0.80884886,0.9871047,-0.24034561,1.2833413,-0.17688803,-0.26839647,0.2809561,-0.603531,0.91159993,1.1194856,0.12695,0.93133324,0.19485945,-1.263272,-1.0152068,-0.6258208,-0.388441,-0.2793302,-0.031327337,-0.66635895,-0.3757849,-0.5861913,0.26153362,0.44614494,-0.41740432,0.2759369,0.96552694,1.0367578,-0.24082665,1.3852285,0.9407495,-0.6961737,1.0109586,-0.34257638,-0.9135118,-0.45883706,-0.14504388,1.1264757,-0.81855536,0.43401524,0.64713776,1.3293812,0.2118824,-1.8885849,-1.4432712,-0.14142823,-0.2691235,-0.72277313,1.634305,-0.68361735,-1.6504062,1.8097149,0.3799859,0.31452572,0.7172195,-1.0896192,0.3822003,-0.009256462,1.0861585,0.89928794,-0.922029,-0.28294834,0.75314254,1.5369449,0.4679765,-0.78051317,0.09830934,0.0065670013,2.3992739,-0.084555455,0.94281566,1.3205991,-0.8541166,0.1897608,0.894678,-0.3970101,-0.9085377,0.33816898,-0.2650103,1.2865232,0.44651237,-0.023921892,1.2833697,0.24775845,-0.5730056,-1.108851,-1.1374428,0.49999836,0.57766014,1.4063251,-1.6040912,0.8098158,1.5447353,0.26384115,0.14908387,0.14978442,1.0482913,2.4881573,-0.6608739,0.12959798,0.65842205,-1.5855303,0.17974748,0.49566454,1.0609252,-1.3835343,0.051432494,-0.46654972,-0.5054484,-0.057442147,0.0018673316,0.37193343,0.27880183,-0.58563006,-0.19527443,0.94021326,-0.6462765,-0.69864786,-0.51846045,-1.6053133,-1.2695297,0.5273155,1.0353415,1.6851649,0.27991688,0.3163711,-1.3399186,-0.18975173,-0.7173524,0.43678918,0.19552806,0.46118012,-0.2772941,0.29609275,0.53748626,-0.14780924,0.8004508,0.27806583,-0.86650646,-0.6708894,0.34346426,0.9675132,0.023997022,-0.19829783,-1.3287162,-0.72464216,0.22031327,1.2573185,-0.19673869,-0.2254802,-1.1065745,-0.21921082,0.74771005,-0.3655623,-0.4576368,0.38909006,-0.05135341,-0.3937326,-0.90710956,0.77739173,0.087827206,-0.739322,0.11076909,0.0019270554,-1.692219,0.16859746,0.010250136,-0.14647768,-0.8355138,1.3156966,-1.0574288,0.59365255,-0.1305698,0.20405048,0.3600983,0.0904333,-1.3832641,0.07342203,0.0149027705,-0.45896608,0.45431745,0.4816412,0.17531694,0.06487155,0.021402463,0.14156647,-0.07069878,-1.0203829,-0.17150746,-1.381047,-0.3260922,-0.59610677,-0.3223541,0.93256336,0.33959556,0.9737258,0.07169393,0.5563536,-0.94385284,0.5155316,-0.9002389,0.17701177,-0.40132585,0.6830908,-0.4486758,0.5451923,0.55620277,0.39793134,-0.15504497,1.4197652,-0.14009576,-0.05684367,0.6103684,-0.62431836,-0.29649815,0.5836719,-1.2521499,-0.43276358,-0.30836532,1.1338003,-0.19025037,-1.6656151,0.23324046,0.048672605,-1.6591656,-0.48363867,2.18649,-0.36803734,0.23197097,-1.0921102,-1.0042057,1.0080668,-1.6808447,0.4009474,0.329615,-8.7057985E-4,0.42324042,-0.54925406,-0.5253801,-0.30507195,-1.7685612,-0.44582546,-1.230395,0.27854642,-0.0686882,0.57701844,-0.84042317,-0.8572006,-0.21744286,-0.269808,0.7909165,-0.15352069,-0.35247916,0.19068,1.0166843,-0.5352292,-0.8488108,0.24783663,0.34912688,0.79078746,-0.5611043,-1.1796281,-0.5173013,-0.3133224,-0.0074357167,0.4385588,-0.41675723,-0.18516557,0.036957107,-1.6373179,-1.1884229,-0.56600565,0.22797847,-0.106825136,0.709651,-1.6186829,0.12909414,-0.64366955,0.83284926,0.548693,1.003717,0.24958526,-0.2924295,0.8417896,-0.70829844,0.5546346,1.7021577,2.0876584,-0.8821945,-0.9775263,0.97983086,0.9777739,-1.680171,0.8639652,-0.1082739,0.19177791,-0.24097914,0.82791394,-0.641672,0.34886894,-2.2165236,-1.3203782,-1.1998574,0.2735715,-0.22205596,0.9080539,-0.05050385,-0.21234742,-1.0180774,0.62604445,-0.2984851,-1.4163407,-0.54627436,0.78338885,0.57976425,-0.5127152,-1.0517728,-0.320395,0.14258051,0.16668367,1.0250278,-0.40900475,0.3500223,0.99173373,0.50015473,-0.0676537,-0.39811668,-0.29712212,-0.27300322,1.209057,-0.18429625,0.016425796,-0.65079594,-0.8771759,-0.22954437,-0.6742156,-0.95547724,0.050243463,0.53536016,0.55213445,0.08149713,-0.46845677,0.74037653,-0.06892677,-0.06332914,-0.31434727,0.5012708,-1.1592361,-0.737605,-0.94195443,-0.94681805,-0.04257107,-0.4356069,-0.00400763,0.9342926,-0.6085551,1.4694679,0.8870526,0.7035612,-1.0701923,-0.31094623,0.4505363,0.9507083,-1.2797108,-0.079249606,-1.077555,-1.0015309,-0.053038612,-0.46691823,-0.1634763,-0.744061,-0.06712276,-0.23070851,-0.2830233,-0.13171308,-0.38740745,1.0671968,0.03689176,0.019370325,-1.2711349,-0.07801034,-0.71759695,-1.608251,-0.66459167,1.1771812,1.0425608,1.051906,0.32696962,-0.34443665,-0.9956496,0.38957056,-0.26961583,0.3811623,0.3567503,-0.10397604,-0.43124354,0.43427464,-0.17960447,0.12408918,0.47403798,1.4061741,0.6193274,-0.10485597,-0.008534677,0.17378987,1.4930804,-0.18255419,-0.2564261,-0.73102236,-0.30453193,-0.78749824]')  was aborted: ERROR: expected 1536 dimensions, not 768  Call getNextException to see other errors in the batch.
+	at org.postgresql.jdbc.BatchResultHandler.handleCompletion(BatchResultHandler.java:186)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:585)
+	at org.postgresql.jdbc.PgStatement.internalExecuteBatch(PgStatement.java:896)
+	at org.postgresql.jdbc.PgStatement.executeBatch(PgStatement.java:919)
+	at org.postgresql.jdbc.PgPreparedStatement.executeBatch(PgPreparedStatement.java:1685)
+	at com.zaxxer.hikari.pool.ProxyStatement.executeBatch(ProxyStatement.java:127)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeBatch(HikariProxyPreparedStatement.java)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$getPreparedStatementCallback$6(JdbcTemplate.java:1609)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 38 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: expected 1536 dimensions, not 768
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:574)
+	... 45 common frames omitted
+25-03-17.21:24:39.017 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+25-03-17.21:24:55.088 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+25-03-17.21:30:00.262 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+25-03-17.21:30:42.522 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+25-03-17.21:32:07.270 [main            ] WARN  DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/15096/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/15096/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+

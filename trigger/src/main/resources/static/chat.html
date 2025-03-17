@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI对话助手</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Markdown样式 */
+        .markdown-content pre {
+            background-color: #f0f0f0;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            overflow-x: auto;
+            margin: 0.3rem 0;
+            position: relative;
+        }
+        
+        /* 代码复制按钮样式 */
+        .copy-button {
+            position: absolute;
+            top: 0.3rem;
+            right: 0.3rem;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 0.2rem;
+            padding: 0.2rem 0.4rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .copy-button:hover {
+            opacity: 1;
+        }
+        .markdown-content code {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.1rem 0.2rem;
+            border-radius: 0.2rem;
+            font-family: monospace;
+        }
+        .markdown-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .markdown-content blockquote {
+            border-left: 4px solid #ddd;
+            padding-left: 1rem;
+            color: #666;
+            margin: 0.3rem 0;
+        }
+        .markdown-content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0.3rem 0;
+        }
+        .markdown-content th, .markdown-content td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+        }
+        .markdown-content ul, .markdown-content ol {
+            padding-left: 1.5rem;
+            margin: 0.3rem 0;
+        }
+        .markdown-content h1, .markdown-content h2, .markdown-content h3,
+        .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+            margin: 0.3rem 0;
+            font-weight: bold;
+        }
+        .markdown-content h1 { font-size: 1.5rem; }
+        .markdown-content h2 { font-size: 1.4rem; }
+        .markdown-content h3 { font-size: 1.3rem; }
+        .markdown-content h4 { font-size: 1.2rem; }
+        .markdown-content h5 { font-size: 1.1rem; }
+        .markdown-content h6 { font-size: 1rem; }
+        .markdown-content p {
+            margin: 0.3rem 0;
+        }
+        .markdown-content img {
+            max-width: 100%;
+        }
+        /* 暗色主题下的Markdown样式 */
+        .dark-theme .markdown-content pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+        }
+        .dark-theme .markdown-content code {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .dark-theme .markdown-content blockquote {
+            border-left-color: #555;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen">
+    <div class="container mx-auto max-w-4xl h-full flex flex-col">
+        <div class="flex gap-4 p-4 bg-white border-b">
+            <select id="apiType" class="border rounded-lg p-2 w-48">
+                <option value="generate">普通模式</option>
+                <option value="generate_stream">流式模式</option>
+            </select>
+            <select id="modelSelect" class="border rounded-lg p-2 flex-1">
+                <option value="gemma3:27b">Gemma 3 (27B)</option>
+                <option value="llama2">Llama 2</option>
+            </select>
+        </div>
+        <div class="flex-1 overflow-y-auto p-4 flex flex-col space-y-4" id="messageContainer">
+            <!-- 消息容器为空 -->
+        </div>
+        
+        <div class="border-t p-4 bg-white">
+            <div class="flex space-x-4">
+                <input type="text" 
+                       id="messageInput"
+                       class="flex-1 border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       placeholder="输入您的问题..."
+                       onkeydown="if(event.key === 'Enter' && !event.shiftKey) sendMessage()">
+                <button onclick="sendMessage()" 
+                        id="sendBtn"
+                        class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 disabled:opacity-50"
+                        >发送</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let eventSource = null;
+        let answerBuffer = '';
+        let isFirstResponse = false;
+        
+        // 存储每个消息的原始Markdown内容
+        const messageContents = new Map();
+
+        function appendMessage(content, isUser = false) {
+            const container = document.getElementById('messageContainer');
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.className = isUser ? 'flex justify-end' : 'flex justify-start';
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = isUser 
+                ? 'bg-blue-500 text-white rounded-lg p-3 max-w-3/4 mb-2 whitespace-pre-wrap' 
+                : 'bg-gray-200 rounded-lg p-3 max-w-3/4 mb-2 whitespace-pre-wrap markdown-content';
+            
+            if (isUser) {
+                contentDiv.textContent = content;
+            } else {
+                // 存储原始Markdown内容
+                const msgId = Date.now().toString();
+                messageContents.set(msgId, content);
+                contentDiv.dataset.msgId = msgId;
+                
+                // 在流式输出完成后才会添加复制全部按钮
+                // 这里不再创建复制全部按钮，而是在输出完成时添加
+                
+                // 使用marked.js渲染Markdown
+                contentDiv.innerHTML = marked.parse(content);
+                
+                // 为每个代码块添加复制按钮
+                const preElements = contentDiv.querySelectorAll('pre');
+                preElements.forEach(pre => {
+                    // 获取代码内容
+                    const codeElement = pre.querySelector('code');
+                    if (codeElement) {
+                        const copyBtn = document.createElement('button');
+                        copyBtn.className = 'copy-button';
+                        copyBtn.textContent = '复制';
+                        copyBtn.onclick = function() {
+                            const codeText = codeElement.textContent;
+                            copyToClipboard(codeText);
+                            copyBtn.textContent = '已复制';
+                            setTimeout(() => {
+                                copyBtn.textContent = '复制';
+                            }, 2000);
+                        };
+                        pre.appendChild(copyBtn);
+                    }
+                });
+                
+                // 创建消息容器
+                const wrapper = document.createElement('div');
+                wrapper.className = 'flex flex-col';
+                wrapper.appendChild(contentDiv);
+                msgDiv.appendChild(wrapper);
+                container.appendChild(msgDiv);
+                
+                container.scrollTop = container.scrollHeight;
+                return msgDiv; // 返回消息元素，以便后续更新
+            }
+            
+            msgDiv.appendChild(contentDiv);
+            container.appendChild(msgDiv);
+            
+            container.scrollTop = container.scrollHeight;
+            return msgDiv; // 返回消息元素，以便后续更新
+        }
+        
+        // 复制文本到剪贴板
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                console.log('文本已复制到剪贴板');
+            }).catch(err => {
+                console.error('复制失败:', err);
+            });
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const btn = document.getElementById('sendBtn');
+            const message = input.value.trim();
+            
+            if (!message || eventSource) return;
+
+            // 添加加载状态
+            const loadingDot = document.createElement('div');
+            loadingDot.className = 'flex justify-start';
+            loadingDot.innerHTML = `
+                <div class="bg-gray-200 rounded-lg p-3 max-w-3/4 mb-2 flex space-x-1">
+                    <div class="h-2 w-2 bg-gray-500 rounded-full animate-bounce"></div>
+                    <div class="h-2 w-2 bg-gray-500 rounded-full animate-bounce delay-100"></div>
+                    <div class="h-2 w-2 bg-gray-500 rounded-full animate-bounce delay-200"></div>
+                </div>
+            `;
+            document.getElementById('messageContainer').appendChild(loadingDot);
+
+            appendMessage(message, true);
+            input.value = '';
+            btn.disabled = true;
+
+            const model = document.getElementById('modelSelect').value;
+            const apiType = document.getElementById('apiType').value;
+            
+            const apiUrl = `http://localhost:8090/api/v1/ollama/${apiType}?model=${model}&message=${encodeURIComponent(message)}`;
+
+            if (apiType === 'generate_stream') {
+                eventSource = new EventSource(apiUrl);
+                answerBuffer = '';
+                isFirstResponse = false;
+                
+                // 添加空的AI消息，准备接收流式内容
+                const aiMsgElement = appendMessage('', false);
+
+                eventSource.onmessage = (event) => {
+                    const data = JSON.parse(event.data);
+                    
+                    // 收到第一个响应时移除加载状态
+                    if (!isFirstResponse) {
+                        document.getElementById('messageContainer').removeChild(loadingDot);
+                        isFirstResponse = true;
+                    }
+                    
+                    data.results?.forEach(result => {
+                        if (result.output?.content) {
+                            answerBuffer += result.output.content;
+                            updateLastMessage(answerBuffer);
+                        }
+                        
+                        if (result.metadata?.finishReason) {
+                            // 在输出完成时添加复制全部按钮
+                            const lastMsg = document.querySelector('#messageContainer > div:last-child');
+                            const wrapper = lastMsg.querySelector('.flex.flex-col');
+                            if (wrapper) {
+                                const msgId = wrapper.querySelector('.markdown-content').dataset.msgId;
+                                const content = messageContents.get(msgId);
+                                
+                                const copyAllBtn = document.createElement('button');
+                                copyAllBtn.className = 'mt-2 self-end bg-gray-300 hover:bg-gray-400 text-gray-800 rounded px-2 py-1 text-xs';
+                                copyAllBtn.textContent = '复制全部';
+                                copyAllBtn.onclick = function() {
+                                    copyToClipboard(content);
+                                    copyAllBtn.textContent = '已复制';
+                                    setTimeout(() => {
+                                        copyAllBtn.textContent = '复制全部';
+                                    }, 2000);
+                                };
+                                wrapper.appendChild(copyAllBtn);
+                            }
+                            
+                            eventSource.close();
+                            eventSource = null;
+                            answerBuffer = '';
+                            btn.disabled = false;
+                        }
+                    });
+                };
+
+                eventSource.onerror = () => {
+                    eventSource.close();
+                    eventSource = null;
+                    btn.disabled = false;
+                };
+            } else {
+                // 普通模式处理
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const fullContent = data.results.map(r => r.output.content).join('');
+                        document.getElementById('messageContainer').removeChild(loadingDot);
+                        const msgElement = appendMessage(fullContent, false);
+                        
+                        // 在普通模式下也添加复制全部按钮
+                        const wrapper = msgElement.querySelector('.flex.flex-col');
+                        if (wrapper) {
+                            const msgId = wrapper.querySelector('.markdown-content').dataset.msgId;
+                            const content = messageContents.get(msgId);
+                            
+                            const copyAllBtn = document.createElement('button');
+                            copyAllBtn.className = 'mt-2 self-end bg-gray-300 hover:bg-gray-400 text-gray-800 rounded px-2 py-1 text-xs';
+                            copyAllBtn.textContent = '复制全部';
+                            copyAllBtn.onclick = function() {
+                                copyToClipboard(content);
+                                copyAllBtn.textContent = '已复制';
+                                setTimeout(() => {
+                                    copyAllBtn.textContent = '复制全部';
+                                }, 2000);
+                            };
+                            wrapper.appendChild(copyAllBtn);
+                        }
+                        
+                        btn.disabled = false;
+                    })
+                    .catch(() => {
+                        document.getElementById('messageContainer').removeChild(loadingDot);
+                        btn.disabled = false;
+                    });
+            }
+        }
+
+        function updateLastMessage(content) {
+            // 获取所有消息元素
+            const messages = document.querySelectorAll('#messageContainer > div');
+            // 查找最后一个AI消息（非用户消息）
+            for (let i = messages.length - 1; i >= 0; i--) {
+                let msgContentDiv;
+                // 检查是否有wrapper div
+                const wrapper = messages[i].querySelector('.flex.flex-col');
+                if (wrapper) {
+                    msgContentDiv = wrapper.querySelector('.markdown-content');
+                } else {
+                    msgContentDiv = messages[i].querySelector('div');
+                }
+                
+                if (msgContentDiv && !msgContentDiv.classList.contains('bg-blue-500')) {
+                    // 更新存储的原始Markdown内容
+                    const msgId = msgContentDiv.dataset.msgId || Date.now().toString();
+                    messageContents.set(msgId, content);
+                    msgContentDiv.dataset.msgId = msgId;
+                    
+                    // 找到AI消息，更新内容并渲染Markdown
+                    msgContentDiv.innerHTML = marked.parse(content);
+                    
+                    // 为每个代码块添加复制按钮
+                    const preElements = msgContentDiv.querySelectorAll('pre');
+                    preElements.forEach(pre => {
+                        // 获取代码内容
+                        const codeElement = pre.querySelector('code');
+                        if (codeElement) {
+                            const copyBtn = document.createElement('button');
+                            copyBtn.className = 'copy-button';
+                            copyBtn.textContent = '复制';
+                            copyBtn.onclick = function() {
+                                const codeText = codeElement.textContent;
+                                copyToClipboard(codeText);
+                                copyBtn.textContent = '已复制';
+                                setTimeout(() => {
+                                    copyBtn.textContent = '复制';
+                                }, 2000);
+                            };
+                            pre.appendChild(copyBtn);
+                        }
+                    });
+                    
+                    document.getElementById('messageContainer').scrollTop = document.getElementById('messageContainer').scrollHeight;
+                    return;
+                }
+            }
+            // 如果没有找到AI消息，创建一个新的
+            appendMessage(content, false);
+        }
+    </script>
+</body>
+</html>
